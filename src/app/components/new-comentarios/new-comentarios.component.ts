@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { StorageService } from 'src/app/services/storage.service';
+import { Comment } from '../../postsInterface';
 
 @Component({
   selector: 'app-new-comentarios',
@@ -8,7 +10,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class NewComentariosComponent implements OnInit {
   form!: FormGroup;
-  constructor(private formBuilder: FormBuilder) {
+  constructor(
+    private formBuilder: FormBuilder,
+    private storage:StorageService) {
     this.buildFrom();
   }
 
@@ -29,7 +33,10 @@ export class NewComentariosComponent implements OnInit {
     return !this.form.controls[control].errors && this.form.controls[control].touched
   }
   onSubmit() {
-    console.log(this.form.value);
-    // console.log(this.form.getError('name'));
+    this.form.markAllAsTouched()
+    const comment =this.form.value as Comment
+    comment.date =new Date()
+    this.storage.addComment(comment)
+    this.form.reset()
   }
 }

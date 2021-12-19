@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  pathUrl: 'https://jsonplaceholder.typicode.com/posts'
+  pathUrl: 'https://jsonplaceholder.typicode.com/posts',
+  keySotore:'comments'
 
 };
 
