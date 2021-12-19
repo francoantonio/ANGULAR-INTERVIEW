@@ -10,7 +10,6 @@ import { PostListComponent } from './Pages/post-list/post-list.component';
 import { PostDetailComponent } from './Pages/post-detail/post-detail.component';
 import { NotFoundComponent } from './Pages/not-found/not-found.component';
 import { ComentariosComponent } from './components/comentarios/comentarios.component';
-import { NewComentariosComponent } from './components/new-comentarios/new-comentarios.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +18,6 @@ import { NewComentariosComponent } from './components/new-comentarios/new-coment
     PostDetailComponent,
     NotFoundComponent,
     ComentariosComponent,
-    NewComentariosComponent,
   ],
   imports: [
     BrowserModule,

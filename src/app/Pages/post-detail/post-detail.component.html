@@ -2,10 +2,9 @@
   <a class="btn btn-outline-primary my-1" routerLink="/posts">Volver</a>
   <div class="d-flex justify-content-between">
     <p>Detail post: {{post.id}}</p>
-    <p *ngIf="dateLastComment">Last Comment: {{dateLastComment}} </p>
+    <p *ngIf="dateLastComment">Last Comment: {{dateLastComment |date}} </p>
   </div>
   <h1>{{post.title}}</h1>
   <p>{{post.body}}</p>
   <app-comentarios [id]="post.id" (dataLastComments)='capturarData($event)'></app-comentarios>
-  <app-new-comentarios></app-new-comentarios>
 </div>
