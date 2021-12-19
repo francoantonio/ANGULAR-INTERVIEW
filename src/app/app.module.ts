@@ -3,16 +3,31 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
+
+import { PostListComponent } from './Pages/post-list/post-list.component';
+import { PostDetailComponent } from './Pages/post-detail/post-detail.component';
+import { NotFoundComponent } from './Pages/not-found/not-found.component';
+import { ComentariosComponent } from './components/comentarios/comentarios.component';
+import { NewComentariosComponent } from './components/new-comentarios/new-comentarios.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    PostListComponent,
+    PostDetailComponent,
+    NotFoundComponent,
+    ComentariosComponent,
+    NewComentariosComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    ReactiveFormsModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
