@@ -20,8 +20,12 @@
       {{form.controls['msg'].errors?.['required'] && 'Campo requerido.'}}
       {{form.controls['msg'].errors?.['maxlength'] && 'El comentario no puede superar los 500 caracteres.'}}
     </span>
-    <button class="btn btn-primary my-4 px-5 shadow-lg" [ngClass]="{'btn-danger':form.invalid}" type="submit" [disabled]="form.invalid">
-      Agregar
-    </button>
+    <div class='button-form'>
+      <button class="btn btn-primary my-4 px-5" [ngClass]="{'btn-danger':form.invalid}" type="submit" [disabled]="form.invalid">
+        Agregar
+      </button>
+      <button class="btn btn-danger my-4 px-5" (click)='this.form.reset()' type='button'>Limpiar</button>
+    </div>
+
   </fieldset>
 </form>
