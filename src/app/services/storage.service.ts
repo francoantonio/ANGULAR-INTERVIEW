@@ -3,37 +3,36 @@ import { environment } from 'src/environments/environment';
 import { Comment } from '../postsInterface';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class StorageService {
-  private key = environment.keySotore
-  constructor() { }
+  private key = environment.keySotore;
+  constructor() {}
 
-  set<t>(key:string,data:t){
+  set<t>(key: string, data: t) {
     try {
       localStorage.setItem(key, JSON.stringify(data));
-    }catch(err){
+    } catch (err) {
       console.log(err);
     }
   }
-  private get(key:string){
-    let dataLocal= localStorage.getItem(key)
-    if(dataLocal){ return JSON.parse(dataLocal)}else{ return []}
+  get(): Comment[]{
+    let dataLocal = localStorage.getItem(this.key);
+    if (dataLocal) {
+      return JSON.parse(dataLocal);
+    } else {
+      return [];
+    }
+  }
 
+  addComment(comment: Comment) {
+    let data = this.get();
+    data ? data.push(comment) : (data = [comment]);
+    this.set(this.key, data);
   }
-  private remove(key:string){
-    try {
-    localStorage.removeItem(key)
-     } catch (err) {
-       console.log(err);
-     }
-  }
-  private clear():void {
-    localStorage.clear()
-  }
-  addComment(comment:Comment){
-    let data = this.get(this.key)
-    data? data.push(comment):data=[comment]
-    this.set(this.key,data)
+  deleteOneComment(comment: Comment) {
+    const data = this.get()
+  data.splice( data.findIndex(x => x.date=== comment.date),1)
+  this.set(this.key, data);
   }
 }
