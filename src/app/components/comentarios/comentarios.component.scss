@@ -1,0 +1,12 @@
+section {
+  border: 1px solid #000;
+  h4 {
+    border-bottom: 1px solid #000;
+    background-color: #e5e5e5;
+  }
+  div {
+    p:first-child {
+      margin-bottom: 0px;
+    }
+  }
+}

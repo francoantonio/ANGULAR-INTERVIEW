@@ -1,0 +1,13 @@
+<section *ngIf="comments.length > 0" class="">
+  <h4 class="text-center py-2"><Strong> Comentarios</Strong></h4>
+
+  <div class="px-3" *ngFor="let comment of comments">
+    <p><span class="fw-bold"> Nombre:</span> {{ comment.name }}</p>
+    <p> <span class="fw-bold">Comentario:</span> {{ comment.body }}</p>
+  </div>
+  <div class="d-flex justify-content-center">
+    <button (click)="emitirData()" [disabled]="lasCommentDate()" class="btn btn-outline-primary my-3 px-5">
+      Emitir
+    </button>
+  </div>
+</section>
