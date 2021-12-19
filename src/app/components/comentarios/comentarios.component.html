@@ -1,6 +1,5 @@
 <section *ngIf="comments.length > 0" class="">
   <h4 class="text-center py-2"><Strong> Comentarios</Strong></h4>
-
   <div class="px-3 row align-items-center" *ngFor="let comment of comments,let i = index">
     <div class="col-11">
       <p><span class="fw-bold"> Nombre:</span> {{ comment.name }}</p>
@@ -53,6 +52,5 @@
       </button>
       <button class="btn btn-danger my-4 px-5" (click)='this.form.reset()' type='button'>Limpiar</button>
     </div>
-
   </fieldset>
 </form>

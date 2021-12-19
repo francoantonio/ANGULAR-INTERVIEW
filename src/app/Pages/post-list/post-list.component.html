@@ -1,4 +1,4 @@
-<h1 class="my-4 h2" >List Post</h1>
+<h1 class="my-4 h2">List Post</h1>
 <table class="table table-bordered">
   <thead>
     <tr>
@@ -8,10 +8,11 @@
     </tr>
   </thead>
   <tbody>
-    <tr  *ngFor='let post of allPosts'>
+    <tr *ngFor='let post of allPosts'>
       <th class="text-center align-middle" scope="row">{{post.id}}</th>
       <td class="text-center align-middle">{{post.body}}</td>
-      <td class="text-center align-middle"><a routerLink="/post/{{post.id}}"><button class="btn btn-outline-primary"> Ver</button></a></td>
+      <td class="text-center align-middle"><a routerLink="/post/{{post.id}}"><button class="btn btn-outline-primary">
+            Ver</button></a></td>
     </tr>
   </tbody>
 </table>

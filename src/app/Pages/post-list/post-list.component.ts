@@ -5,15 +5,15 @@ import { PostsService } from 'src/app/services/posts.service';
 @Component({
   selector: 'app-post-list',
   templateUrl: './post-list.component.html',
-  styleUrls: ['./post-list.component.scss']
+  styleUrls: ['./post-list.component.scss'],
 })
 export class PostListComponent implements OnInit {
   public allPosts: Post[] = [];
-  constructor(private postsService:PostsService) { }
+  constructor(private postsService: PostsService) {}
 
   ngOnInit(): void {
-    this.postsService.posts.subscribe(data => {this.allPosts = data})
-
+    this.postsService.posts.subscribe((data) => {
+      this.allPosts = data;
+    });
   }
-
 }

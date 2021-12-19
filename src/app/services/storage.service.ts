@@ -16,7 +16,7 @@ export class StorageService {
       console.log(err);
     }
   }
-  get(): Comment[]{
+  get(): Comment[] {
     let dataLocal = localStorage.getItem(this.key);
     if (dataLocal) {
       return JSON.parse(dataLocal);
@@ -31,8 +31,11 @@ export class StorageService {
     this.set(this.key, data);
   }
   deleteOneComment(comment: Comment) {
-    const data = this.get()
-  data.splice( data.findIndex(x => x.date=== comment.date),1)
-  this.set(this.key, data);
+    const data = this.get();
+    data.splice(
+      data.findIndex((x) => x.date === comment.date),
+      1
+    );
+    this.set(this.key, data);
   }
 }
