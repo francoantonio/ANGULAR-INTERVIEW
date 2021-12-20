@@ -26,17 +26,15 @@ export class ComentariosComponent implements OnInit {
     this.postsService.getComments(this.id).subscribe((data) => {
       this.comments = data;
       this.commentsOrigin = data;
-      let temporalData = this.loadStorage();
-      if (this.loadStorage()) {
-        this.comments = [...this.comments, ...temporalData];
+      if (this.loadStorage(this.id)) {
+        this.comments = [...this.comments, ...this.loadStorage(this.id)];
       }
     });
   }
   checkComment() {
     this.comments = this.commentsOrigin;
-    let temporalData = this.loadStorage();
-    if (this.loadStorage()) {
-      this.comments = [...this.comments, ...temporalData];
+    if (this.loadStorage(this.id)) {
+      this.comments = [...this.comments, ...this.loadStorage(this.id)];
     }
   }
   private buildFrom() {
@@ -57,11 +55,11 @@ export class ComentariosComponent implements OnInit {
     const date = this.comments[this.comments.length - 1];
     return date.date ? date.date : '';
   }
-  loadStorage(): Comment[] {
-    return this.storage.get();
+  loadStorage(id: number): Comment[] {
+    return this.storage.get(id);
   }
   deleteComment(id: number) {
-    this.storage.deleteOneComment(this.comments[id]);
+    this.storage.deleteOneComment(this.comments[id], this.id);
     this.checkComment();
   }
   emitirData() {
@@ -81,7 +79,7 @@ export class ComentariosComponent implements OnInit {
     this.form.markAllAsTouched();
     const comment = this.form.value as Comment;
     comment.date = new Date();
-    this.storage.addComment(comment);
+    this.storage.addComment(comment, this.id);
     this.form.reset();
     this.checkComment();
   }
