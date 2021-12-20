@@ -23,7 +23,7 @@
   </div>
 </section>
 
-<form [formGroup]="form" (ngSubmit)="onSubmit()" class="mt-4" autocomplete="off">
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="my-4" autocomplete="off">
   <fieldset>
     <legend class='ms-5 mt-3'>Tus Datos</legend>
     <input class="form-control mt-3 mb-1" formControlName="name" id="nombre" placeholder="Nombre" type="text"
@@ -50,7 +50,7 @@
         [disabled]="form.invalid">
         Agregar
       </button>
-      <button class="btn btn-danger my-4 px-5" (click)='this.form.reset()' type='button'>Limpiar</button>
+      <button class="btn btn-danger my-4 px-5" (click)='this.form.reset()' [disabled]="!form.touched" type='button'>Limpiar</button>
     </div>
   </fieldset>
 </form>
