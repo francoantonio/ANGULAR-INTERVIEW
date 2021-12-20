@@ -9,15 +9,15 @@ export class StorageService {
   private key = environment.keySotore;
   constructor() {}
 
-  set<t>(key: string, data: t) {
+  set<t>(key: string, id: number, data: t) {
     try {
-      localStorage.setItem(key, JSON.stringify(data));
+      localStorage.setItem(key + id, JSON.stringify(data));
     } catch (err) {
       console.log(err);
     }
   }
-  get(): Comment[] {
-    let dataLocal = localStorage.getItem(this.key);
+  get(id: number): Comment[] {
+    let dataLocal = localStorage.getItem(this.key + id);
     if (dataLocal) {
       return JSON.parse(dataLocal);
     } else {
@@ -25,17 +25,17 @@ export class StorageService {
     }
   }
 
-  addComment(comment: Comment) {
-    let data = this.get();
+  addComment(comment: Comment, id: number) {
+    let data = this.get(id);
     data ? data.push(comment) : (data = [comment]);
-    this.set(this.key, data);
+    this.set(this.key, id, data);
   }
-  deleteOneComment(comment: Comment) {
-    const data = this.get();
+  deleteOneComment(comment: Comment, id: number) {
+    const data = this.get(id);
     data.splice(
       data.findIndex((x) => x.date === comment.date),
       1
     );
-    this.set(this.key, data);
+    this.set(this.key, id, data);
   }
 }
