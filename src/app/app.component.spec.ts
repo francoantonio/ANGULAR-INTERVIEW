@@ -1,35 +1,37 @@
-import { TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
+import { RouterOutlet } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
+  let fixture: ComponentFixture<AppComponent>;
+  let component: AppComponent;
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-        RouterTestingModule
-      ],
-      declarations: [
-        AppComponent
-      ],
+      imports: [RouterTestingModule],
+      declarations: [AppComponent],
     }).compileComponents();
   });
-
-  it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app).toBeTruthy();
+  beforeEach(() => {
+    fixture = TestBed.createComponent(AppComponent);
+    component = fixture.debugElement.componentInstance;
+  });
+  it('contiene un router-outlet', () => {
+    const de = fixture.debugElement.query(By.directive(RouterOutlet));
+    expect(de).not.toBeNull();
   });
 
-  it(`should have as title 'angular-interview'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('angular-interview');
+  it('El contenedor debe tener la clase container-custom', () => {
+    const contenedor: HTMLDivElement =
+      fixture.nativeElement.querySelector('div');
+    expect(contenedor).toBeTruthy();
+    expect(contenedor.className).toBe('container-custom');
   });
-
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('angular-interview app is running!');
+  it('El contenedor debe 1 hijo, router outlet', () => {
+    const contenedor: HTMLDivElement =
+      fixture.nativeElement.querySelector('div');
+    expect(contenedor.children.length).toBe(1);
+    expect(contenedor.children[0].nodeName).toBe('ROUTER-OUTLET');
   });
 });
