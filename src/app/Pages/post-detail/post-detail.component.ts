@@ -29,7 +29,6 @@ export class PostDetailComponent implements OnInit {
       );
     });
   }
-  ngDoCheck(): void {}
   capturarData(mensaje: string) {
     this.dateLastComment = mensaje;
   }
